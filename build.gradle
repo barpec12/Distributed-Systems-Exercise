@@ -1,0 +1,40 @@
+plugins {
+	id 'application'
+	id 'org.openjfx.javafxplugin' version '0.0.13'
+	id 'idea'
+	id "io.freefair.lombok" version "6.5.1"}
+
+repositories {
+	mavenCentral()
+}
+
+idea {
+	module {
+		downloadJavadoc = true
+		downloadSources = true
+	}
+}
+
+mainClassName = 'FlightClient'
+
+javafx {
+	version = "17"
+	modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+task runServerApp(type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+	mainClass = 'FlightServer'
+}
+
+task runClientApp {
+//	classpath = sourceSets.main.runtimeClasspath
+//	application.
+//	jvmArgs = ['--module-path', classpath.asPath,
+//			   '--add-modules', 'javafx.controls', '--add-modules' ,'javafx.fxml' ]
+//	mainClass = 'FlightClient'
+}
+
+if (project.hasProperty('runClientApp')) {
+	runClientApp.finalizedBy run
+}

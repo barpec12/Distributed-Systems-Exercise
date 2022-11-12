@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Test">
+   <children>
+      <TilePane layoutX="444.0" layoutY="345.0" prefHeight="54.0" prefWidth="155.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="69.0" layoutY="107.0" text="Label" />
+                  <Label layoutX="143.0" layoutY="150.0" text="Label" />
+               </children>
+            </AnchorPane>
+         </children></TilePane>
+      <Label layoutX="124.0" layoutY="143.0" text="Label" />
+   </children>
+</AnchorPane>
