@@ -4,11 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightsTableController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightDetailsController">
    <children>
-      <AnchorPane prefHeight="320.0" prefWidth="551.0">
+      <AnchorPane>
          <children>
-            <GridPane hgap="10.0" minHeight="350.0" minWidth="600.0">
+            <GridPane hgap="20.0" minHeight="350.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,11 +33,11 @@
                     </rowConstraints>
                      <children>
                         <Label text="IATA Code:" />
-                        <TextField fx:id="iataCodeInput" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="iataCode" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" />
                         <Label layoutX="10.0" layoutY="69.0" text="Aircraft Model Name" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label layoutX="10.0" layoutY="202.0" text="Tracking Number" GridPane.rowIndex="2" />
-                        <TextField fx:id="trackingNumberInput" layoutX="110.0" layoutY="65.0" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="aircraftModel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label layoutX="10.0" layoutY="202.0" text="Flight Number" GridPane.rowIndex="2" />
+                        <TextField fx:id="flightNumber" layoutX="110.0" layoutY="65.0" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label layoutX="10.0" layoutY="202.0" text="Label" GridPane.rowIndex="3" />
                         <TextField layoutX="110.0" layoutY="141.0" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label layoutX="10.0" layoutY="202.0" text="Label" GridPane.rowIndex="4" />
@@ -63,8 +63,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Label" />
-                        <TextField prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <Label text="Operating Airline" />
+                        <TextField fx:id="operatingAirline" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" />
                         <Label layoutX="10.0" layoutY="69.0" text="Label" GridPane.rowIndex="1" />
                         <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label layoutX="10.0" layoutY="202.0" text="Label" GridPane.rowIndex="2" />
@@ -83,8 +83,8 @@
             </GridPane>
             <ButtonBar layoutX="200.0" layoutY="350.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Cancel" />
-                  <Button layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Save" />
+                <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="saveButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" text="Save" />
               </buttons>
             </ButtonBar>
          </children>

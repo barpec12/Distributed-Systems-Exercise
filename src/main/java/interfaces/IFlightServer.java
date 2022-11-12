@@ -2,13 +2,16 @@ package interfaces;
 
 import model.Flight;
 
-public interface IFlightServer {
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-	void login(String clientName, IFlightClient client);
+public interface IFlightServer extends Remote {
 
-	void logout(String clientName);
+	void login(String clientName, IFlightClient client) throws RemoteException;
 
-	void updateFlight(String clientName, Flight flight);
+	void logout(String clientName) throws RemoteException;
+
+	void updateFlight(String clientName, Flight flight) throws RemoteException;
 	
-	void deleteFlight(String clientName, Flight flight);
+	void deleteFlight(String clientName, Flight flight) throws RemoteException;
 }

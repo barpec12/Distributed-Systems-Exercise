@@ -10,9 +10,9 @@
             <TableView fx:id="flightTable" layoutY="-1.0" prefHeight="370.0" prefWidth="600.0" />
             <ButtonBar layoutX="172.0" layoutY="366.0" prefHeight="37.0" prefWidth="261.0">
               <buttons>
-                <Button mnemonicParsing="false" text="New" />
-                  <Button mnemonicParsing="false" text="Edit" />
-                  <Button mnemonicParsing="false" text="Delete" />
+                <Button fx:id="newButton" mnemonicParsing="false" text="New" />
+                  <Button fx:id="editButton" mnemonicParsing="false" text="Edit" />
+                  <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" />
               </buttons>
             </ButtonBar>
          </children>

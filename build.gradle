@@ -15,7 +15,7 @@ idea {
 	}
 }
 
-mainClassName = 'FlightClient'
+mainClassName = 'FlightClientApplication'
 
 javafx {
 	version = "17"
