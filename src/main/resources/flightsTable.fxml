@@ -3,11 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightsTableController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightsTableController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <TableView fx:id="flightTable" layoutY="-1.0" prefHeight="370.0" prefWidth="600.0" />
+            <TableView fx:id="flightTable" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="600.0" />
             <ButtonBar layoutX="172.0" layoutY="366.0" prefHeight="37.0" prefWidth="261.0">
               <buttons>
                 <Button fx:id="newButton" mnemonicParsing="false" text="New" />

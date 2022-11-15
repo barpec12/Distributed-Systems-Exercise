@@ -1,8 +1,6 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Flight;
 
@@ -26,6 +24,8 @@ public class FlightDetailsController implements Initializable {
     private Button cancelButton;
     @FXML
     private Button saveButton;
+    @FXML
+    private ComboBox comboBox;
 
     private Flight flight;
     private Stage stage;
@@ -33,6 +33,7 @@ public class FlightDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        initialize_choices_of_comboBox();
         cancelButton.setOnAction(event -> stage.close());
         saveButton.setOnAction(event -> {
             try {
@@ -61,11 +62,25 @@ public class FlightDetailsController implements Initializable {
             flight = new Flight();
             flightTableView.getItems().add(flight);
         }
+        //start here
+        //don't save empty data
+        //requirements about some fields
         flight.setIataCode(iataCode.getText());
         flight.setFlightNumber(flightNumber.getText());
         flight.setOperatingAirline(operatingAirline.getText());
         stage.close();
         FlightClient.getIFlightServer().updateFlight(FlightClientApplication.getFlightClient().getClientName(), flight);
         flightTableView.refresh();
+    }
+
+    private void initialize_choices_of_comboBox(){
+        comboBox.getItems().add("'B' = Arrival by bus at Concourse B");
+        comboBox.getItems().add("'D' = Diverted");
+        comboBox.getItems().add("'I' = Undefined late arrival or departure");
+        comboBox.getItems().add("'L' = Aborted departure");
+        comboBox.getItems().add("'M' = Flight delayed until tomorrow");
+        comboBox.getItems().add("'Y' = Return to stand");
+        comboBox.getItems().add("'Z' = Returned to apron");
+
     }
 }

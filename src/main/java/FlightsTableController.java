@@ -32,6 +32,9 @@ public class FlightsTableController implements Initializable {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    //private
+
     private Stage mainStage;
 
     @Override
@@ -45,7 +48,19 @@ public class FlightsTableController implements Initializable {
         TableColumn<Flight, String> column3 = new TableColumn<>("Flight Number");
         column3.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
 
-        flightTable.getColumns().addAll(column1, column2, column3);
+        TableColumn<Flight, String> column4 = new TableColumn<>("Departure");
+        column4.setCellValueFactory(new PropertyValueFactory<>("departureAirport"));
+
+        TableColumn<Flight, String> column5 = new TableColumn<>("Arrival");
+        column5.setCellValueFactory(new PropertyValueFactory<>("arrivalAirport"));
+
+        TableColumn<Flight, String> column6 = new TableColumn<>("Terminal");
+        column6.setCellValueFactory(new PropertyValueFactory<>("departureTerminal"));
+
+        TableColumn<Flight, String> column7 = new TableColumn<>("Scheduled Time");
+        column7.setCellValueFactory(new PropertyValueFactory<>("scheduledDeparture"));
+
+        flightTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);
 
         flightsTableController = this;
 
