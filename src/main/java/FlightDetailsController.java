@@ -59,7 +59,7 @@ public class FlightDetailsController implements Initializable {
     }
 
     private void saveFlight() throws RemoteException {
-        TableView<Flight> flightTableView = (TableView<Flight>) mainStage.getScene().lookup("#flightTable");
+        TableView<Flight> flightTableView =(TableView<Flight>)mainStage.getScene().lookup("#flightTable");
         if(isNull(flight)) {
             flight = new Flight();
             flightTableView.getItems().add(flight);
@@ -67,6 +67,7 @@ public class FlightDetailsController implements Initializable {
         //start here
         //don't save empty data
         //requirements about some fields
+        //2011-03-11T12:34+01:00[Europe/Belgrade]
         flight.setIataCode(iataCode.getText());
         flight.setFlightNumber(flightNumber.getText());
         flight.setOperatingAirline(operatingAirline.getText());
