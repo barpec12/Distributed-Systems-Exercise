@@ -6,6 +6,9 @@ import model.Flight;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ResourceBundle;
 
 import static java.util.Objects.isNull;
@@ -13,12 +16,7 @@ import static java.util.Objects.isNull;
 public class FlightDetailsController implements Initializable {
 
     @FXML
-    private TextField iataCode;
-    @FXML
-    private TextField flightNumber;
-    @FXML
-    private TextField operatingAirline;
-
+    private TextField iataCode, flightNumber, operatingAirline, departureAirport, arrivalAirport, departureTerminal, scheduledDeparture;
 
     @FXML
     private Button cancelButton;
@@ -54,6 +52,10 @@ public class FlightDetailsController implements Initializable {
         iataCode.setText(flight.getIataCode());
         flightNumber.setText(flight.getFlightNumber());
         operatingAirline.setText(flight.getOperatingAirline());
+        departureAirport.setText(flight.getDepartureAirport());
+        arrivalAirport.setText(flight.getArrivalAirport());
+        departureTerminal.setText(flight.getDepartureTerminal());
+        scheduledDeparture.setText(flight.getScheduledDeparture().toString());
     }
 
     private void saveFlight() throws RemoteException {
@@ -68,6 +70,11 @@ public class FlightDetailsController implements Initializable {
         flight.setIataCode(iataCode.getText());
         flight.setFlightNumber(flightNumber.getText());
         flight.setOperatingAirline(operatingAirline.getText());
+        flight.setDepartureAirport(departureAirport.getText());
+        flight.setArrivalAirport(arrivalAirport.getText());
+        flight.setDepartureTerminal(departureTerminal.getText());
+        flight.setScheduledDeparture(ZonedDateTime.parse(scheduledDeparture.getText()));
+
         stage.close();
         FlightClient.getIFlightServer().updateFlight(FlightClientApplication.getFlightClient().getClientName(), flight);
         flightTableView.refresh();

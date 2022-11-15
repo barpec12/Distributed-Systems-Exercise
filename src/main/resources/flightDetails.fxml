@@ -43,8 +43,8 @@
                         <TextField fx:id="aircraftModel" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label layoutX="10.0" layoutY="202.0" text="Flight Number" GridPane.rowIndex="2" />
                         <TextField fx:id="flightNumber" layoutX="110.0" layoutY="65.0" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="departureAirport" layoutX="10.0" layoutY="202.0" text="Departure Airport" GridPane.rowIndex="3" />
-                        <TextField layoutX="110.0" layoutY="141.0" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label layoutX="10.0" layoutY="202.0" text="Departure Airport" GridPane.rowIndex="3" />
+                        <TextField fx:id="departureAirport" layoutX="110.0" layoutY="141.0" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label layoutX="10.0" layoutY="202.0" text="Origin Date" GridPane.rowIndex="4" />
                         <TextField layoutX="10.0" layoutY="27.0" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label layoutX="10.0" layoutY="31.0" text="Scheduled Departure" GridPane.rowIndex="5" />

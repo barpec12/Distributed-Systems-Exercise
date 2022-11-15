@@ -94,7 +94,7 @@ public class FlightsTableController implements Initializable {
                 flightTable.getItems().remove(f);
                 flightTable.refresh();
                 try {
-                    FlightClient.getIFlightServer().updateFlight(FlightClientApplication.getFlightClient().getClientName(), f);
+                    FlightClient.getIFlightServer().deleteFlight(FlightClientApplication.getFlightClient().getClientName(), f);
                 } catch (RemoteException e) {
                     throw new RuntimeException(e);
                 }
