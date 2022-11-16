@@ -85,10 +85,7 @@ public class FlightDetailsController implements Initializable {
                     LocalTime.of(Integer.parseInt(scheduledDepartureHour.getText()),
                             Integer.parseInt(scheduledDepartureMinute.getText())));
             flight.setScheduledDeparture(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()));
-        } catch (NumberFormatException numberFormatException) {
-            clearDateFieldProneToErrors();
-            return;
-        } catch (DateTimeException dateTimeException) {
+        } catch (NumberFormatException | DateTimeException numberFormatException) {
             clearDateFieldProneToErrors();
             return;
         }
