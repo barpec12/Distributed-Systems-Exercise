@@ -1,3 +1,4 @@
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -58,7 +59,11 @@ public class FlightsTableController implements Initializable {
         column6.setCellValueFactory(new PropertyValueFactory<>("departureTerminal"));
 
         TableColumn<Flight, String> column7 = new TableColumn<>("Scheduled Time");
-        column7.setCellValueFactory(new PropertyValueFactory<>("scheduledDeparture"));
+        column7.setCellValueFactory(cellData -> {
+            String localScheduledDate = cellData.getValue().getScheduledDeparture().toLocalDateTime()
+                    .toString().replace("T", " ");
+            return new SimpleStringProperty(localScheduledDate);
+        });
 
         flightTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);
 

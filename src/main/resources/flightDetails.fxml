@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightDetailsController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightDetailsController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="683.0">
          <children>
@@ -38,6 +38,25 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
+                        <HBox spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <children>
+                              <TextField fx:id="scheduledDepartureHour" promptText="12">
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin></TextField>
+                              <TextField fx:id="scheduledDepartureMinute" promptText="00">
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin></TextField>
+                              <DatePicker fx:id="scheduledDepartureDate">
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin></DatePicker>
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </HBox>
                         <Label text="IATA Code:" />
                         <TextField fx:id="iataCode" prefHeight="25.0" prefWidth="140.0" promptText="mandatory field" GridPane.columnIndex="1">
                            <font>
@@ -61,10 +80,6 @@
                         <Label layoutX="10.0" layoutY="202.0" text="Origin Date" GridPane.rowIndex="4" />
                         <TextField layoutX="10.0" layoutY="27.0" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label layoutX="10.0" layoutY="31.0" text="Scheduled Departure" GridPane.rowIndex="5" />
-                        <TextField fx:id="scheduledDeparture" layoutX="10.0" layoutY="27.0" prefHeight="25.0" prefWidth="140.0" promptText="rrrr-mm-ddThh:mm+hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <font>
-                              <Font size="10.0" />
-                           </font></TextField>
                         <Label layoutX="10.0" layoutY="31.0" text="Departure Terminal" GridPane.rowIndex="6" />
                         <TextField fx:id="departureTerminal" layoutX="10.0" layoutY="27.0" prefHeight="19.0" prefWidth="150.0" promptText="mandatory field" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <font>
