@@ -15,5 +15,5 @@ import java.time.ZonedDateTime;
 public class Flight implements Serializable {
     private String operatingAirline, iataCode, aircraftModel, flightNumber, departureAirport, arrivalAirport, departureTerminal;
     private String arrivalTerminal, arrivalListOfGates, departureListOfGates, checkInLocation, checkInCounter, flightStatus;
-    private ZonedDateTime scheduledArrival, scheduledDeparture, estimatedArrival, estimatedDeparture, checkInStart, checkInEnd;
+    private ZonedDateTime scheduledArrival, scheduledDeparture, estimatedArrival, estimatedDeparture, checkInStart, checkInEnd, originDate;
 }

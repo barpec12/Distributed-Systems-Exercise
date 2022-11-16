@@ -14,13 +14,13 @@ import static java.util.Objects.isNull;
 public class FlightDetailsController implements Initializable {
 
     @FXML
-    private TextField iataCode, flightNumber, operatingAirline, departureAirport, arrivalAirport, departureTerminal;
+    private TextField iataCode, flightNumber, operatingAirline, departureAirport, arrivalAirport, departureTerminal, aircraftModel, arrivalTerminal, departureGates, arrivalGates;
 
     @FXML
-    private TextField scheduledDepartureHour, scheduledDepartureMinute;
+    private TextField scheduledDepartureHour, scheduledDepartureMinute, originDateHour, originDateMinut, scheduledArrivalHour, scheduledArrivalMinut;
 
     @FXML
-    private DatePicker scheduledDepartureDate;
+    private DatePicker scheduledDepartureDate, originDateDate, scheduledArrivalDate;
 
     @FXML
     private Button cancelButton;
@@ -54,14 +54,27 @@ public class FlightDetailsController implements Initializable {
     public void fillWithData(Flight flight) {
         this.flight = flight;
         iataCode.setText(flight.getIataCode());
+        aircraftModel.setText(flight.getAircraftModel());
         flightNumber.setText(flight.getFlightNumber());
         operatingAirline.setText(flight.getOperatingAirline());
         departureAirport.setText(flight.getDepartureAirport());
         arrivalAirport.setText(flight.getArrivalAirport());
         departureTerminal.setText(flight.getDepartureTerminal());
+        arrivalTerminal.setText(flight.getArrivalTerminal());
+        departureGates.setText(flight.getDepartureListOfGates());
+        arrivalGates.setText(flight.getArrivalListOfGates());
+
         scheduledDepartureDate.setValue(flight.getScheduledDeparture().toLocalDate());
         scheduledDepartureMinute.setText(String.valueOf(flight.getScheduledDeparture().getMinute()));
         scheduledDepartureHour.setText(String.valueOf(flight.getScheduledDeparture().getHour()));
+
+        originDateDate.setValue(flight.getOriginDate().toLocalDate());
+        originDateHour.setText(String.valueOf(flight.getOriginDate().getHour()));
+        originDateMinut.setText(String.valueOf(flight.getOriginDate().getMinute()));
+
+        scheduledArrivalDate.setValue(flight.getScheduledArrival().toLocalDate());
+        scheduledArrivalHour.setText(String.valueOf(flight.getScheduledArrival().getHour()));
+        scheduledArrivalMinut.setText(String.valueOf(flight.getScheduledArrival().getMinute()));
     }
 
     private void saveFlight() throws RemoteException {
@@ -70,21 +83,34 @@ public class FlightDetailsController implements Initializable {
             flight = new Flight();
             flightTableView.getItems().add(flight);
         }
-        //start here
-        //don't save empty data
-        //requirements about some fields
-        //2011-03-11T12:34+01:00[Europe/Belgrade]
+
         try {
             flight.setIataCode(iataCode.getText());
+            flight.setAircraftModel(aircraftModel.getText());
             flight.setFlightNumber(flightNumber.getText());
             flight.setOperatingAirline(operatingAirline.getText());
             flight.setDepartureAirport(departureAirport.getText());
             flight.setArrivalAirport(arrivalAirport.getText());
             flight.setDepartureTerminal(departureTerminal.getText());
+            flight.setArrivalTerminal(arrivalTerminal.getText());
+            flight.setDepartureListOfGates(departureGates.getText());
+            flight.setArrivalListOfGates(arrivalGates.getText());
+
             LocalDateTime localDateTime = LocalDateTime.of(scheduledDepartureDate.getValue(),
                     LocalTime.of(Integer.parseInt(scheduledDepartureHour.getText()),
                             Integer.parseInt(scheduledDepartureMinute.getText())));
             flight.setScheduledDeparture(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()));
+
+            localDateTime = LocalDateTime.of(originDateDate.getValue(),
+                    LocalTime.of(Integer.parseInt(originDateHour.getText()),
+                            Integer.parseInt(originDateMinut.getText())));
+            flight.setOriginDate(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()));
+
+            localDateTime = LocalDateTime.of(scheduledArrivalDate.getValue(),
+                    LocalTime.of(Integer.parseInt(scheduledArrivalHour.getText()),
+                            Integer.parseInt(scheduledArrivalMinut.getText())));
+            flight.setScheduledArrival(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()));
+
         } catch (NumberFormatException | DateTimeException numberFormatException) {
             clearDateFieldProneToErrors();
             return;

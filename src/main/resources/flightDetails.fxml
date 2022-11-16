@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightDetailsController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlightDetailsController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="683.0">
          <children>
@@ -20,8 +20,8 @@
                <children>
                   <GridPane>
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -78,7 +78,6 @@
                               <Font size="10.0" />
                            </font></TextField>
                         <Label layoutX="10.0" layoutY="202.0" text="Origin Date" GridPane.rowIndex="4" />
-                        <TextField layoutX="10.0" layoutY="27.0" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label layoutX="10.0" layoutY="31.0" text="Scheduled Departure" GridPane.rowIndex="5" />
                         <Label layoutX="10.0" layoutY="31.0" text="Departure Terminal" GridPane.rowIndex="6" />
                         <TextField fx:id="departureTerminal" layoutX="10.0" layoutY="27.0" prefHeight="19.0" prefWidth="150.0" promptText="mandatory field" GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -90,17 +89,34 @@
                         <Label text="Check-in Location" GridPane.rowIndex="9" />
                         <Label text="Check-in Counter" GridPane.rowIndex="10" />
                         <Label text="Check-in Start" GridPane.rowIndex="11" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <TextField prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <TextField prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <TextField fx:id="departureGates" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="checkInLocation" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextField fx:id="checkInCounter" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <HBox prefHeight="19.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <children>
+                              <TextField fx:id="estimatedDepartureHour" />
+                              <TextField fx:id="estimatedDepartureMinut" />
+                              <DatePicker fx:id="estimatedDepartureDate" />
+                           </children></HBox>
+                        <HBox prefHeight="24.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                           <children>
+                              <TextField fx:id="checkInStartHour" />
+                              <TextField fx:id="checkInStartMinut" />
+                              <DatePicker fx:id="checkInStartDate" />
+                           </children></HBox>
+                        <HBox prefHeight="7.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <children>
+                              <TextField fx:id="originDateHour" />
+                              <TextField fx:id="originDateMinut" />
+                              <DatePicker fx:id="originDateDate" />
+                           </children>
+                        </HBox>
                      </children>
                   </GridPane>
-                  <GridPane prefHeight="411.0" prefWidth="281.0" GridPane.columnIndex="1">
+                  <GridPane GridPane.columnIndex="1">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="39.4" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
@@ -113,8 +129,8 @@
                         <RowConstraints maxHeight="55.19999999999999" minHeight="10.0" prefHeight="34.39999999999998" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="52.39999999999998" minHeight="10.0" prefHeight="30.399999999999977" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="45.39999999999998" minHeight="10.0" prefHeight="44.39999999999998" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="39.39999999999998" minHeight="10.0" prefHeight="38.39999999999998" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="40.39999999999998" minHeight="10.0" prefHeight="25.80000000000001" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="39.39999999999998" minHeight="10.0" prefHeight="31.399999999999977" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.39999999999998" minHeight="10.0" prefHeight="33.39999999999998" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label text="Operating Airline" />
@@ -128,15 +144,33 @@
                               <Font size="10.0" />
                            </font></TextField>
                         <Label layoutX="10.0" layoutY="31.0" text="Scheduled Arrival" GridPane.rowIndex="5" />
-                        <TextField layoutX="10.0" layoutY="27.0" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label layoutX="10.0" layoutY="31.0" text="Arrival  Terminal" GridPane.rowIndex="6" />
-                        <TextField layoutX="10.0" layoutY="27.0" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <TextField fx:id="arrivalTerminal" layoutX="10.0" layoutY="27.0" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="arrivalGates" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label text="Arrival Gates" GridPane.rowIndex="7" />
                         <Label text="Estimated Arrival" GridPane.rowIndex="8" />
                         <Label text="Check-in End" GridPane.rowIndex="11" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <children>
+                              <TextField fx:id="scheduledArrivalHour" />
+                              <TextField fx:id="scheduledArrivalMinut" />
+                              <DatePicker fx:id="scheduledArrivalDate" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <children>
+                              <TextField fx:id="estimatedArrivalHour" />
+                              <TextField fx:id="estimatedArrivalMinut" />
+                              <DatePicker fx:id="estimatedArrivalDate" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                           <children>
+                              <TextField fx:id="checkInEndHour" />
+                              <TextField fx:id="checkInEndMinut" />
+                              <DatePicker fx:id="checkInEndDate" />
+                           </children>
+                        </HBox>
                      </children>
                   </GridPane>
                </children>
