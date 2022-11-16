@@ -21,18 +21,6 @@ public class FlightServer implements IFlightServer {
 
 	protected FlightServer() throws RemoteException {
 		super();
-
-		ZoneId zoneId = ZoneId.systemDefault();
-		var departureTime = ZonedDateTime.of(LocalDateTime.of(2022, 12, 24, 15, 30), zoneId);
-		var arrivalTime = ZonedDateTime.of(LocalDateTime.of(2022, 12, 24, 17, 30), zoneId);
-		var flightBuilder = Flight.builder();
-		flightBuilder.arrivalAirport("Frankfurt am Main").scheduledDeparture(arrivalTime).departureAirport("Warsaw")
-				.scheduledArrival(departureTime).iataCode("LOT").operatingAirline("Lot").flightNumber("123").departureTerminal("A1");
-		Flight f1 = flightBuilder.build();
-		flightBuilder.operatingAirline("Lufthansa").iataCode("LTH").flightNumber("523");
-		Flight f2 = flightBuilder.build();
-
-		flights.addAll(Arrays.asList(f1, f2));
 	}
 
 	@Override

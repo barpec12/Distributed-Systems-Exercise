@@ -95,19 +95,19 @@
                         <HBox prefHeight="19.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <children>
                               <TextField fx:id="estimatedDepartureHour" />
-                              <TextField fx:id="estimatedDepartureMinut" />
+                              <TextField fx:id="estimatedDepartureMinute" />
                               <DatePicker fx:id="estimatedDepartureDate" />
                            </children></HBox>
                         <HBox prefHeight="24.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                            <children>
                               <TextField fx:id="checkInStartHour" />
-                              <TextField fx:id="checkInStartMinut" />
+                              <TextField fx:id="checkInStartMinute" />
                               <DatePicker fx:id="checkInStartDate" />
                            </children></HBox>
                         <HBox prefHeight="7.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <TextField fx:id="originDateHour" />
-                              <TextField fx:id="originDateMinut" />
+                              <TextField fx:id="originDateMinute" />
                               <DatePicker fx:id="originDateDate" />
                            </children>
                         </HBox>
@@ -153,21 +153,21 @@
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
                               <TextField fx:id="scheduledArrivalHour" />
-                              <TextField fx:id="scheduledArrivalMinut" />
+                              <TextField fx:id="scheduledArrivalMinute" />
                               <DatePicker fx:id="scheduledArrivalDate" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <children>
                               <TextField fx:id="estimatedArrivalHour" />
-                              <TextField fx:id="estimatedArrivalMinut" />
+                              <TextField fx:id="estimatedArrivalMinute" />
                               <DatePicker fx:id="estimatedArrivalDate" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                            <children>
                               <TextField fx:id="checkInEndHour" />
-                              <TextField fx:id="checkInEndMinut" />
+                              <TextField fx:id="checkInEndMinute" />
                               <DatePicker fx:id="checkInEndDate" />
                            </children>
                         </HBox>

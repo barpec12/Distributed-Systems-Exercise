@@ -7,6 +7,7 @@ import model.Flight;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.time.*;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static java.util.Objects.isNull;
@@ -17,7 +18,7 @@ public class FlightDetailsController implements Initializable {
     private TextField iataCode, flightNumber, operatingAirline, departureAirport, arrivalAirport, departureTerminal, aircraftModel, arrivalTerminal, departureGates, arrivalGates;
 
     @FXML
-    private TextField scheduledDepartureHour, scheduledDepartureMinute, originDateHour, originDateMinut, scheduledArrivalHour, scheduledArrivalMinut;
+    private TextField scheduledDepartureHour, scheduledDepartureMinute, originDateHour, originDateMinute, scheduledArrivalHour, scheduledArrivalMinute;
 
     @FXML
     private DatePicker scheduledDepartureDate, originDateDate, scheduledArrivalDate;
@@ -70,15 +71,15 @@ public class FlightDetailsController implements Initializable {
 
         originDateDate.setValue(flight.getOriginDate().toLocalDate());
         originDateHour.setText(String.valueOf(flight.getOriginDate().getHour()));
-        originDateMinut.setText(String.valueOf(flight.getOriginDate().getMinute()));
+        originDateMinute.setText(String.valueOf(flight.getOriginDate().getMinute()));
 
         scheduledArrivalDate.setValue(flight.getScheduledArrival().toLocalDate());
         scheduledArrivalHour.setText(String.valueOf(flight.getScheduledArrival().getHour()));
-        scheduledArrivalMinut.setText(String.valueOf(flight.getScheduledArrival().getMinute()));
+        scheduledArrivalMinute.setText(String.valueOf(flight.getScheduledArrival().getMinute()));
     }
 
     private void saveFlight() throws RemoteException {
-        TableView<Flight> flightTableView =(TableView<Flight>)mainStage.getScene().lookup("#flightTable");
+        TableView<Flight> flightTableView = (TableView<Flight>)mainStage.getScene().lookup("#flightTable");
         if(isNull(flight)) {
             flight = new Flight();
             flightTableView.getItems().add(flight);
@@ -103,15 +104,19 @@ public class FlightDetailsController implements Initializable {
 
             localDateTime = LocalDateTime.of(originDateDate.getValue(),
                     LocalTime.of(Integer.parseInt(originDateHour.getText()),
-                            Integer.parseInt(originDateMinut.getText())));
+                            Integer.parseInt(originDateMinute.getText())));
             flight.setOriginDate(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()));
 
             localDateTime = LocalDateTime.of(scheduledArrivalDate.getValue(),
                     LocalTime.of(Integer.parseInt(scheduledArrivalHour.getText()),
-                            Integer.parseInt(scheduledArrivalMinut.getText())));
+                            Integer.parseInt(scheduledArrivalMinute.getText())));
             flight.setScheduledArrival(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()));
 
         } catch (NumberFormatException | DateTimeException numberFormatException) {
+            clearDateFieldProneToErrors();
+            return;
+        }
+        if(Objects.isNull(flightNumber.getText())|| flightNumber.getText().length() < 1) {
             clearDateFieldProneToErrors();
             return;
         }
