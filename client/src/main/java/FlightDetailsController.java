@@ -121,7 +121,6 @@ public class FlightDetailsController implements Initializable {
             return;
         }
         stage.close();
-        FlightClient.getIFlightServer().updateFlight(FlightClientApplication.getFlightClient().getClientName(), flight);
         flightTableView.refresh();
     }
 

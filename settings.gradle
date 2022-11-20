@@ -16,3 +16,5 @@ include 'services:webservice'
 */
 
 rootProject.name = 'tk1-ex1'
+include 'server'
+include 'client'

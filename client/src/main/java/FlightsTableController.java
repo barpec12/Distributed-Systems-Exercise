@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -69,12 +68,6 @@ public class FlightsTableController implements Initializable {
 
         flightsTableController = this;
 
-        try {
-            FlightClientApplication.getFlightClient().startup();
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-
         newButton.setOnAction(event -> {
             try {
                 openFlightDetails(Optional.empty());
@@ -98,11 +91,7 @@ public class FlightsTableController implements Initializable {
             flightOptional.ifPresent(f -> {
                 flightTable.getItems().remove(f);
                 flightTable.refresh();
-                try {
-                    FlightClient.getIFlightServer().deleteFlight(FlightClientApplication.getFlightClient().getClientName(), f);
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
-                }
+                //TODO remove flight
             });
         });
 

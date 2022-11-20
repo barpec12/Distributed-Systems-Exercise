@@ -29,12 +29,11 @@ public class FlightClientApplication extends Application {
 
     public static void main(String[] args) {
         flightClient = new FlightClient(UUID.randomUUID().toString());
-        launch();
+        Application.launch();
     }
 
     @Override
     public void stop() throws Exception {
         super.stop();
-        flightClient.logout();
     }
 }
