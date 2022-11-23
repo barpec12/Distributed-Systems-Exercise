@@ -1,7 +1,23 @@
 plugins {
+    id 'idea'
+    id "io.freefair.lombok" version "6.5.1"
     id 'java'
 }
 
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-ri
+    implementation group: 'com.sun.xml.ws', name: 'jaxws-ri', version: '4.0.0', ext: 'pom'
+    implementation group: 'com.sun.xml.ws', name: 'rt', version: '4.0.0', ext: 'pom'
+// https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-rt
+    implementation group: 'com.sun.xml.ws', name: 'jaxws-rt', version: '4.0.0'
+
+}
+
+task runServerApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'pl.barpec12.tk1.flightserver.FlightServer'
 }

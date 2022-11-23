@@ -1,3 +1,5 @@
+package pl.barpec12.tk1.flightclient;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,13 +16,13 @@ public class FlightClientApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("flightsTable.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("flightsTable.fxml"));
         Parent root = fxmlLoader.load();
 
         FlightsTableController flightsTableController = fxmlLoader.getController();
         flightsTableController.setMainStage(stage);
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
 
         stage.setTitle("TK Airport Arrivals / Departures");
         stage.setScene(scene);

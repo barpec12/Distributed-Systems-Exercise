@@ -1,8 +1,10 @@
+package pl.barpec12.tk1.flightclient;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Flight;
+import pl.barpec12.tk1.flightclient.model.Flight;
 
 import java.net.URL;
 import java.rmi.RemoteException;

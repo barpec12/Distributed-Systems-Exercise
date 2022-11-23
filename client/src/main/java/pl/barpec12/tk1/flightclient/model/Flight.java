@@ -1,4 +1,4 @@
-package model;
+package pl.barpec12.tk1.flightclient.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

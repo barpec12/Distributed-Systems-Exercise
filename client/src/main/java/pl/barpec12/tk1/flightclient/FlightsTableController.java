@@ -1,3 +1,5 @@
+package pl.barpec12.tk1.flightclient;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.Getter;
-import model.Flight;
+import pl.barpec12.tk1.flightclient.model.Flight;
 
 public class FlightsTableController implements Initializable {
 
@@ -108,7 +110,7 @@ public class FlightsTableController implements Initializable {
 
     private void openFlightDetails(Optional<Flight> flightOptional) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("flightDetails.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("flightDetails.fxml"));
         Parent root = fxmlLoader.load();
 
         FlightDetailsController flightDetailsController = fxmlLoader.getController();
@@ -118,7 +120,7 @@ public class FlightsTableController implements Initializable {
         });
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
 
         stage.setTitle("TK Airport Arrivals / Departures");
         stage.setScene(scene);

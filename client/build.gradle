@@ -15,16 +15,15 @@ idea {
     }
 }
 
-mainClassName = 'FlightClientApplication'
+mainClassName = 'pl.barpec12.tk1.flightclient.FlightClientApplication'
 
 javafx {
     version = "17"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-task runServerApp(type: JavaExec) {
-    classpath = sourceSets.main.runtimeClasspath
-    mainClass = 'FlightServer'
+dependencies {
+    implementation group: 'com.sun.xml.ws', name: 'jaxws-rt', version: '4.0.0'
 }
 
 task runClientApp {
