@@ -24,4 +24,5 @@ public class ReservationBookingController {
         var list = flightServer.getFlights();
         return list;//list.toArray(new Flight[list.size()]);
     }
+
 }
