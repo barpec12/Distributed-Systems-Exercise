@@ -2,7 +2,7 @@ package pl.barpec12.tk1.flightserver;
 
 import jakarta.xml.ws.Endpoint;
 import lombok.Getter;
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import pl.barpec12.tk1.flightserver.model.Flight;
 import pl.barpec12.tk1.flightserver.rest.ReservationBookingController;
@@ -31,7 +31,7 @@ public class FlightServer {
 		Endpoint.publish("http://localhost:8090/ws/reservationBooking", new ReservationBookingImpl(flightServer));
 
 		ResourceConfig resourceConfig = new ResourceConfig(ReservationBookingController.class);
-		GrizzlyHttpServerFactory.createHttpServer(URI.create("http://localhost:8080"), resourceConfig, true);
+		JdkHttpServerFactory.createHttpServer(URI.create("http://localhost:8080/"), resourceConfig, true);
 	}
 
 }
