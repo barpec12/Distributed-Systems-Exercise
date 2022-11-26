@@ -38,7 +38,7 @@ public class FlightClient {
 			List<Flight> soapF = Arrays.asList(reservationBooking.getFlights());
 			System.out.println(soapF);
 			System.out.println("\n\n\n\n");
-			System.out.println(Arrays.asList(reservationBooking.getFreeSeats(soapF.get(0))));
+			System.out.println(Arrays.asList(reservationBooking.getFreeSeats(soapF.get(0).getFlightNumber())));
 
 			System.out.println("\n\n\n\n");
 

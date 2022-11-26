@@ -3,6 +3,7 @@ package pl.barpec12.tk1.flightserver.soap;
 import jakarta.jws.WebService;
 import pl.barpec12.tk1.flightserver.FlightServer;
 import pl.barpec12.tk1.flightserver.model.Flight;
+import pl.barpec12.tk1.flightserver.model.Reservation;
 import pl.barpec12.tk1.flightserver.model.Seat;
 
 import java.util.HashSet;
@@ -22,9 +23,30 @@ public class ReservationBookingImpl implements ReservationBooking {
     }
 
     @Override
-    public Seat[] getFreeSeats(Flight flight) {
+    public Seat[] getFreeSeats(String flightNumber) {
+        var flightOptional = flightServer.getFlights().stream()
+                .filter(f -> f.getFlightNumber().equals(flightNumber)).findAny();
+        if(flightOptional.isEmpty()) return new Seat[0];
+        var flight = flightOptional.get();
         Set<Seat> seats = new HashSet<>(flight.getSeats());
-        flightServer.getReservations().get(flight).forEach(reservation -> seats.remove(reservation.getSeat()));
+        flightServer.getReservations().stream().filter(r -> r.getFlightNumber().equals(flightNumber))
+                .forEach(reservation -> seats.remove(reservation.getSeat()));
         return seats.toArray(new Seat[seats.size()]);
+    }
+
+    /**
+     *
+     * @return true if reservation was successful
+     */
+    @Override
+    public boolean reserveFlight(String flightNumber, Reservation reservation) {
+        var flightOptional = flightServer.getFlights().stream().filter(f -> f.getFlightNumber().equals(flightNumber)).findAny();
+        if(flightOptional.isEmpty()) return false;
+        var other = flightServer.getReservations()
+                .stream().filter(r -> r.getFlightNumber().equals(flightNumber)
+                        && r.getSeat().equals(reservation.getSeat())).findAny();
+        if(other.isPresent()) return false;
+        flightServer.addReservation(reservation);
+        return true;
     }
 }

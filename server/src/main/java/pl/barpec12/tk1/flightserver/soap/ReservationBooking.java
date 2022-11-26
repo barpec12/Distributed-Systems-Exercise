@@ -4,6 +4,7 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import pl.barpec12.tk1.flightserver.model.Flight;
+import pl.barpec12.tk1.flightserver.model.Reservation;
 import pl.barpec12.tk1.flightserver.model.Seat;
 
 @WebService
@@ -12,5 +13,7 @@ public interface ReservationBooking {
     @WebMethod
     Flight[] getFlights();
     @WebMethod
-    Seat[] getFreeSeats(Flight flight);
+    Seat[] getFreeSeats(String flightNumber);
+    @WebMethod
+    boolean reserveFlight(String flightNumber, Reservation reservation);
 }

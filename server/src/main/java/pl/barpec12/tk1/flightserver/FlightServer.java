@@ -20,17 +20,17 @@ public class FlightServer {
 	@Getter
 	private List<Flight> flights = new ArrayList<>();
 	@Getter
-	private Map<Flight, Set<Reservation>> reservations = new HashMap<>();
+	private Set<Reservation> reservations = new HashSet<>();
 
 	@Getter
 	private static FlightServer flightServer;
 	protected FlightServer() {
 		var f = prepareBoeing();
-		flights.add(f);
+		addFlight(f);
 		var s = f.getSeats().stream().filter(seat -> seat.getLetter() == 'A' && seat.getRow() == 1).findAny().get();
-		Reservation reservation = Reservation.builder().meal(Reservation.Meal.STANDARD).seat(s).build();
+		Reservation reservation = Reservation.builder().flightNumber(f.getFlightNumber()).meal(Reservation.Meal.STANDARD).seat(s).build();
 
-		addReservation(f, reservation);
+		addReservation(reservation);
 	}
 
 	public static void main(String[] args) {
@@ -41,9 +41,12 @@ public class FlightServer {
 		JdkHttpServerFactory.createHttpServer(URI.create("http://localhost:8080/"), resourceConfig, true);
 	}
 
-	private void addReservation(Flight flight, Reservation reservation) {
-		if(!reservations.containsKey(flight)) reservations.put(flight, new HashSet<>());
-		reservations.get(flight).add(reservation);
+	public void addReservation(Reservation reservation) {
+		reservations.add(reservation);
+	}
+
+	public void addFlight(Flight flight) {
+		flights.add(flight);
 	}
 
 	private char letter(int number) {
