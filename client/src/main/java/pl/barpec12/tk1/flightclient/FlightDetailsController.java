@@ -30,7 +30,7 @@ public class FlightDetailsController implements Initializable {
     @FXML
     private Button saveButton;
     @FXML
-    private ComboBox comboBox;
+    private ComboBox comboBox, aircraftModelNameComboBox;
 
     private Flight flight;
     private Stage stage;
@@ -39,6 +39,7 @@ public class FlightDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initialize_choices_of_comboBox();
+        initialize_choices_of_comboBox_of_model();
         cancelButton.setOnAction(event -> stage.close());
         saveButton.setOnAction(event -> {
             try {
@@ -57,7 +58,7 @@ public class FlightDetailsController implements Initializable {
     public void fillWithData(Flight flight) {
         this.flight = flight;
         iataCode.setText(flight.getIataCode());
-        aircraftModel.setText(flight.getAircraftModel());
+        aircraftModelNameComboBox.setValue(flight.getAircraftModelNameComboBox());
         flightNumber.setText(flight.getFlightNumber());
         operatingAirline.setText(flight.getOperatingAirline());
         departureAirport.setText(flight.getDepartureAirport());
@@ -89,7 +90,7 @@ public class FlightDetailsController implements Initializable {
 
         try {
             flight.setIataCode(iataCode.getText());
-            flight.setAircraftModel(aircraftModel.getText());
+            flight.setAircraftModelNameComboBox(aircraftModelNameComboBox.getValue().toString());
             flight.setFlightNumber(flightNumber.getText());
             flight.setOperatingAirline(operatingAirline.getText());
             flight.setDepartureAirport(departureAirport.getText());
@@ -139,5 +140,11 @@ public class FlightDetailsController implements Initializable {
         comboBox.getItems().add("'Y' = Return to stand");
         comboBox.getItems().add("'Z' = Returned to apron");
 
+    }
+
+    private void initialize_choices_of_comboBox_of_model(){
+        aircraftModelNameComboBox.getItems().add("Boeing 737-900");
+        aircraftModelNameComboBox.getItems().add("Airbus 319");
+        aircraftModelNameComboBox.getItems().add("Embraer E170");
     }
 }

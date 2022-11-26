@@ -25,6 +25,7 @@ public class FlightsTableController implements Initializable {
 
     @Getter
     private static FlightsTableController flightsTableController;
+
     @FXML
     private TableView<Flight> flightTable;
     @FXML
@@ -35,8 +36,6 @@ public class FlightsTableController implements Initializable {
     private Button deleteButton;
 
     @FXML
-    //private
-
     private Stage mainStage;
 
     @Override
@@ -66,7 +65,10 @@ public class FlightsTableController implements Initializable {
             return new SimpleStringProperty(localScheduledDate);
         });
 
-        flightTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7);
+        TableColumn<Flight, String> column8 = new TableColumn<>("Aircraft Model");
+        column8.setCellValueFactory(new PropertyValueFactory<>("aircraftModelNameComboBox"));
+
+        flightTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8);
 
         flightsTableController = this;
 
@@ -87,6 +89,13 @@ public class FlightsTableController implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+//            editButton.setOnAction(event -> {
+//            try {
+//                openReservationService();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
 
         deleteButton.setOnAction(event -> {
             Optional<Flight> flightOptional = Optional.ofNullable(flightTable.getSelectionModel().getSelectedItem());
@@ -96,6 +105,22 @@ public class FlightsTableController implements Initializable {
                 //TODO remove flight
             });
         });
+
+        flightTable.getSelectionModel().selectedItemProperty().addListener(event ->{
+            try{
+                openReservationService();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+                });
+
+//        flightTable.setOnMouseClicked(event -> {
+//            try{
+//                openReservationService();
+//            }catch (IOException e){
+//                e.printStackTrace();
+//            }
+//        });
 
     }
 
@@ -123,6 +148,18 @@ public class FlightsTableController implements Initializable {
         scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
 
         stage.setTitle("TK Airport Arrivals / Departures");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void openReservationService()throws IOException{
+        Stage stage = new Stage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("reservationService.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

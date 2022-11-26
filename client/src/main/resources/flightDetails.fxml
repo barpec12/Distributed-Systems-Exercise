@@ -63,10 +63,6 @@
                               <Font size="10.0" />
                            </font></TextField>
                         <Label layoutX="10.0" layoutY="69.0" text="Aircraft Model Name" GridPane.rowIndex="1" />
-                        <TextField fx:id="aircraftModel" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="10.0" />
-                           </font></TextField>
                         <Label layoutX="10.0" layoutY="202.0" text="Flight Number" GridPane.rowIndex="2" />
                         <TextField fx:id="flightNumber" layoutX="110.0" layoutY="65.0" prefHeight="25.0" prefWidth="140.0" promptText="mandatory field" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
@@ -111,6 +107,7 @@
                               <DatePicker fx:id="originDateDate" />
                            </children>
                         </HBox>
+                        <ComboBox fx:id="aircraftModelNameComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1">
