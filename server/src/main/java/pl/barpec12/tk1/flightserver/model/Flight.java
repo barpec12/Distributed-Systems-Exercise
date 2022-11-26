@@ -19,5 +19,4 @@ public class Flight implements Serializable {
     private ZonedDateTime scheduledArrival, scheduledDeparture, estimatedArrival, estimatedDeparture, checkInStart, checkInEnd, originDate;
 
     private Set<Seat> seats;
-    private Set<Reservation> reservations;
 }

@@ -11,10 +11,7 @@ import pl.barpec12.tk1.flightserver.rest.ReservationBookingController;
 import pl.barpec12.tk1.flightserver.soap.ReservationBookingImpl;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class FlightServer {
@@ -22,6 +19,8 @@ public class FlightServer {
 	private static Logger logger = Logger.getLogger(FlightServer.class.getName());
 	@Getter
 	private List<Flight> flights = new ArrayList<>();
+	@Getter
+	private Map<Flight, Set<Reservation>> reservations = new HashMap<>();
 
 	@Getter
 	private static FlightServer flightServer;
@@ -30,7 +29,8 @@ public class FlightServer {
 		flights.add(f);
 		var s = f.getSeats().stream().filter(seat -> seat.getLetter() == 'A' && seat.getRow() == 1).findAny().get();
 		Reservation reservation = Reservation.builder().meal(Reservation.Meal.STANDARD).seat(s).build();
-		f.getReservations().add(reservation);
+
+		addReservation(f, reservation);
 	}
 
 	public static void main(String[] args) {
@@ -41,12 +41,17 @@ public class FlightServer {
 		JdkHttpServerFactory.createHttpServer(URI.create("http://localhost:8080/"), resourceConfig, true);
 	}
 
+	private void addReservation(Flight flight, Reservation reservation) {
+		if(!reservations.containsKey(flight)) reservations.put(flight, new HashSet<>());
+		reservations.get(flight).add(reservation);
+	}
+
 	private char letter(int number) {
 		return (char) (number + 64);
 	}
 
 	private Flight prepareBoeing() {
-		var flight = Flight.builder().flightNumber("43223").reservations(new HashSet<>()).build();
+		var flight = Flight.builder().flightNumber("43223").build();
 		Set<Seat> seats = new HashSet<>();
 		Seat.SeatBuilder seatBuilder = Seat.builder();
 		seatBuilder.seatClass(Seat.SeatClass.FIRST);

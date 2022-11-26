@@ -35,13 +35,19 @@ public class FlightClient {
 
 			Service service = Service.create(url, qname);
 			ReservationBooking reservationBooking = service.getPort(port, ReservationBooking.class);
-			System.out.println(Arrays.asList(reservationBooking.getFlights()));
+			List<Flight> soapF = Arrays.asList(reservationBooking.getFlights());
+			System.out.println(soapF);
+			System.out.println("\n\n\n\n");
+			System.out.println(Arrays.asList(reservationBooking.getFreeSeats(soapF.get(0))));
+
+			System.out.println("\n\n\n\n");
 
 			Client client = ClientBuilder.newClient();
 			WebTarget reservation = client.target("http://localhost:8080/reservation");
 			WebTarget flightsList = reservation.path("/flights");
 			List<Flight> flights = flightsList.request(MediaType.APPLICATION_JSON).get(List.class);
 			System.out.println(flights);
+
 
 		} catch (MalformedURLException e) {
 			throw new RuntimeException(e);
