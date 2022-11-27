@@ -83,10 +83,8 @@ public class FlightDetailsController implements Initializable {
 
     private void saveFlight() throws RemoteException {
         TableView<Flight> flightTableView = (TableView<Flight>)mainStage.getScene().lookup("#flightTable");
-        if(isNull(flight)) {
-            flight = new Flight();
-            flightTableView.getItems().add(flight);
-        }
+        var flightClient = FlightClient.getFlightClient();
+        if(isNull(flight)) flight = new Flight();
 
         try {
             flight.setIataCode(iataCode.getText());
@@ -123,8 +121,9 @@ public class FlightDetailsController implements Initializable {
             clearDateFieldProneToErrors();
             return;
         }
+        flightClient.getReservationBooking().addFlight(flight);
+        flightClient.refreshFlights();
         stage.close();
-        flightTableView.refresh();
     }
 
     private void clearDateFieldProneToErrors() {

@@ -11,6 +11,7 @@ import pl.barpec12.tk1.flightserver.rest.ReservationBookingController;
 import pl.barpec12.tk1.flightserver.soap.ReservationBookingImpl;
 
 import java.net.URI;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -54,7 +55,16 @@ public class FlightServer {
 	}
 
 	private Flight prepareBoeing() {
-		var flight = Flight.builder().flightNumber("43223").build();
+		var flight = Flight.builder()
+				.flightNumber("43223")
+				.originDate(ZonedDateTime.now())
+				.estimatedArrival(ZonedDateTime.now())
+				.scheduledArrival(ZonedDateTime.now())
+				.scheduledDeparture(ZonedDateTime.now())
+				.estimatedDeparture(ZonedDateTime.now())
+				.checkInStart(ZonedDateTime.now())
+				.checkInEnd(ZonedDateTime.now())
+				.build();
 		Set<Seat> seats = new HashSet<>();
 		Seat.SeatBuilder seatBuilder = Seat.builder();
 		seatBuilder.seatClass(Seat.SeatClass.FIRST);

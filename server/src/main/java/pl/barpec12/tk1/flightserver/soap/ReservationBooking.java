@@ -16,4 +16,6 @@ public interface ReservationBooking {
     Seat[] getFreeSeats(String flightNumber);
     @WebMethod
     boolean reserveFlight(String flightNumber, Reservation reservation);
+    @WebMethod
+    void addFlight(Flight flight);
 }

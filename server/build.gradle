@@ -20,6 +20,7 @@ dependencies {
     implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '3.1.0'
     // https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-jdk-http
     implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-jdk-http', version: '3.1.0'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310'
 
 }
 

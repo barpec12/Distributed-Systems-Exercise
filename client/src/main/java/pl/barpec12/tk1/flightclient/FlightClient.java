@@ -24,21 +24,26 @@ public class FlightClient {
 	@Getter
 	private String clientId;
 	@Getter
-	private List<Flight> flightList = new ArrayList<>();
+	private static FlightClient flightClient;
+	@Getter
+	private List<Flight> flightList;
+	@Getter
+	private ReservationBooking reservationBooking;
 
 	public FlightClient(String clientId) {
 		this.clientId = clientId;
+		flightClient = this;
 		try {
 			URL url = new URL("http://localhost:8090/ws/reservationBooking?wsdl");
 			QName qname = new QName("http://soap.flightserver.tk1.barpec12.pl/", "ReservationBookingImplService");
 			QName port = new QName("http://soap.flightserver.tk1.barpec12.pl/", "ReservationBookingImplPort");
 
 			Service service = Service.create(url, qname);
-			ReservationBooking reservationBooking = service.getPort(port, ReservationBooking.class);
-			List<Flight> soapF = Arrays.asList(reservationBooking.getFlights());
-			System.out.println(soapF);
-			System.out.println("\n\n\n\n");
-			System.out.println(Arrays.asList(reservationBooking.getFreeSeats(soapF.get(0).getFlightNumber())));
+			reservationBooking = service.getPort(port, ReservationBooking.class);
+			downloadFlights();
+//			System.out.println(soapF);
+//			System.out.println("\n\n\n\n");
+//			System.out.println(Arrays.asList(reservationBooking.getFreeSeats(soapF.get(0).getFlightNumber())));
 
 			System.out.println("\n\n\n\n");
 
@@ -48,14 +53,22 @@ public class FlightClient {
 			List<Flight> flights = flightsList.request(MediaType.APPLICATION_JSON).get(List.class);
 			System.out.println(flights);
 
-
 		} catch (MalformedURLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	private void updateTable() {
+	private void downloadFlights() {
+		flightList = Arrays.asList(reservationBooking.getFlights());
+	}
+
+	public void refreshFlights() {
+		downloadFlights();
+		updateTable();
+	}
+	public void updateTable() {
 		logger.info("Updating table...");
 		FlightsTableController.getFlightsTableController().setFlights(flightList);
 	}
+
 }

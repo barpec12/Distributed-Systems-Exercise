@@ -61,7 +61,7 @@ public class FlightsTableController implements Initializable {
         TableColumn<Flight, String> column7 = new TableColumn<>("Scheduled Time");
         column7.setCellValueFactory(cellData -> {
             String localScheduledDate = cellData.getValue().getScheduledDeparture().toLocalDateTime()
-                    .toString().replace("T", " ");
+                    .toString().replace("T", " ").split("\\.")[0];
             return new SimpleStringProperty(localScheduledDate);
         });
 
@@ -69,6 +69,8 @@ public class FlightsTableController implements Initializable {
         column8.setCellValueFactory(new PropertyValueFactory<>("aircraftModelNameComboBox"));
 
         flightTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8);
+
+        setFlights(FlightClient.getFlightClient().getFlightList());
 
         flightsTableController = this;
 
