@@ -179,7 +179,7 @@
               </buttons>
             </ButtonBar>
             <Label layoutX="14.0" layoutY="436.0" text="Flight Status" />
-            <ComboBox fx:id="comboBox" layoutX="98.0" layoutY="432.0" prefHeight="26.0" prefWidth="495.0" />
+            <ComboBox fx:id="flightStatus" layoutX="98.0" layoutY="432.0" prefHeight="26.0" prefWidth="495.0" />
          </children>
          <StackPane.margin>
             <Insets />
