@@ -18,7 +18,7 @@ public class Seat {
     }
 
     private SeatClass seatClass;
-    private boolean isEmergencySeat;
+    private boolean emergencySeat;
     private int row;
     private char letter;
 }

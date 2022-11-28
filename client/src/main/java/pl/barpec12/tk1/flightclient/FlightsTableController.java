@@ -91,13 +91,6 @@ public class FlightsTableController implements Initializable {
                 throw new RuntimeException(e);
             }
         });
-//            editButton.setOnAction(event -> {
-//            try {
-//                openReservationService();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
 
         deleteButton.setOnAction(event -> {
             Optional<Flight> flightOptional = Optional.ofNullable(flightTable.getSelectionModel().getSelectedItem());
@@ -115,14 +108,6 @@ public class FlightsTableController implements Initializable {
                 e.printStackTrace();
             }
                 });
-
-//        flightTable.setOnMouseClicked(event -> {
-//            try{
-//                openReservationService();
-//            }catch (IOException e){
-//                e.printStackTrace();
-//            }
-//        });
 
     }
 

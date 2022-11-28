@@ -101,14 +101,14 @@ public class FlightServer {
 			}
 		}
 		seatBuilder.seatClass(Seat.SeatClass.ECONOMY_PLUS);
-		seatBuilder.isEmergencySeat(true);
+		seatBuilder.emergencySeat(true);
 		for(int i = 20; i<22; i++) {
 			seatBuilder.row(i);
 			for(int j = 1; j<7; j++) {
 				seats.add(seatBuilder.letter(letter(j)).build());
 			}
 		}
-		seatBuilder.isEmergencySeat(false);
+		seatBuilder.emergencySeat(false);
 		seatBuilder.seatClass(Seat.SeatClass.ECONOMY);
 		for(int i = 22; i<40; i++) {
 			seatBuilder.row(i);
