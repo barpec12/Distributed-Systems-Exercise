@@ -26,6 +26,8 @@ public class FlightServer {
 
 	@Getter
 	private static FlightServer flightServer;
+	@Getter
+	private static ReservationService reservationService;
 
 	private Random random;
 	protected FlightServer() {
@@ -75,7 +77,8 @@ public class FlightServer {
 
 	public static void main(String[] args) {
 		flightServer = new FlightServer();
-		Endpoint.publish("http://localhost:8090/ws/reservationBooking", new ReservationBookingImpl(flightServer));
+		reservationService = new ReservationService(flightServer);
+		Endpoint.publish("http://localhost:8090/ws/reservationBooking", new ReservationBookingImpl(reservationService));
 
 		ResourceConfig resourceConfig = new ResourceConfig(ReservationBookingController.class);
 		JdkHttpServerFactory.createHttpServer(URI.create("http://localhost:8080/"), resourceConfig, true);

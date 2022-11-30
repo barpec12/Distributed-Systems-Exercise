@@ -1,0 +1,44 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'idea'
+    id "io.freefair.lombok" version "6.5.1"}
+
+repositories {
+    mavenCentral()
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+mainClassName = 'pl.barpec12.tk1.flightclient.FlightClientApplication'
+
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client
+    implementation group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '3.1.0'
+    implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '3.1.0'
+    implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '3.1.0'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310'
+
+}
+
+task runClientApp {
+//	classpath = sourceSets.main.runtimeClasspath
+//	application.
+//	jvmArgs = ['--module-path', classpath.asPath,
+//			   '--add-modules', 'javafx.controls', '--add-modules' ,'javafx.fxml' ]
+//	mainClass = 'FlightClient'
+}
+
+if (project.hasProperty('runClientApp')) {
+    runClientApp.finalizedBy run
+}
