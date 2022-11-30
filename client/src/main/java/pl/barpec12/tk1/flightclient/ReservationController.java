@@ -42,7 +42,10 @@ public class ReservationController implements Initializable {
         TableColumn<Seat, String> column4 = new TableColumn<>("Seat class");
         column4.setCellValueFactory(new PropertyValueFactory<>("seatClass"));
 
-        table_seats.getColumns().addAll(column1, column2, column3, column4);
+        TableColumn<Seat, String> column5 = new TableColumn<>("Price (Euro)");
+        column5.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        table_seats.getColumns().addAll(column1, column2, column3, column4, column5);
 
         setFlights(Arrays.asList(FlightClient.getFlightClient().getReservationBooking().getFreeSeats("43223")));
 

@@ -20,4 +20,5 @@ public class Seat implements Serializable {
     private boolean emergencySeat;
     private int row;
     private char letter;
+    private double price;
 }

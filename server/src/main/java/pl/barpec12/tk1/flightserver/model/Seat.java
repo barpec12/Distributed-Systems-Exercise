@@ -21,4 +21,11 @@ public class Seat {
     private boolean emergencySeat;
     private int row;
     private char letter;
+    private double price;
+
+    public void updatePrice(Flight flight) {
+        //Cost depends on destination - the longer the name of the destination, the higher the price :)
+        price = flight.getArrivalAirport().length() * seatClass.getPriceMultiplier();
+    }
+
 }

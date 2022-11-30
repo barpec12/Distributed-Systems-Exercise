@@ -64,6 +64,7 @@ public class FlightServer {
 				.estimatedDeparture(ZonedDateTime.now())
 				.checkInStart(ZonedDateTime.now())
 				.checkInEnd(ZonedDateTime.now())
+				.arrivalAirport("TK Airport")
 				.build();
 		Set<Seat> seats = new HashSet<>();
 		Seat.SeatBuilder seatBuilder = Seat.builder();
@@ -116,6 +117,8 @@ public class FlightServer {
 				seats.add(seatBuilder.letter(letter(j)).build());
 			}
 		}
+
+		seats.forEach(seat -> seat.updatePrice(flight));
 		flight.setSeats(seats);
 		return flight;
 	}
