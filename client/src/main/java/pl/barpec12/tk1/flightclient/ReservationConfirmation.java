@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import pl.barpec12.tk1.flightclient.model.Flight;
 import pl.barpec12.tk1.flightclient.model.Reservation;
 import pl.barpec12.tk1.flightclient.model.Seat;
@@ -30,8 +31,6 @@ public class ReservationConfirmation implements Initializable {
 
     private Flight flight;
 
-    private Reservation reservation;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -45,7 +44,12 @@ public class ReservationConfirmation implements Initializable {
            try{
                //let's check if the user selected the proper value from the combobox
                if (foodBox.getSelectionModel().isEmpty()==true) System.out.println("wait");
-               else confirmation_process();
+               else {
+                   confirmation_process();
+                   Stage stage = (Stage) confirmButton.getScene().getWindow();
+                   stage.close();
+
+               }
 
            } catch (Exception e) {
                throw new RuntimeException(e);
@@ -65,9 +69,11 @@ public class ReservationConfirmation implements Initializable {
 
     private void confirmation_process(){
 
+        System.out.println(foodBox.getValue().toString().toUpperCase());
+
         Reservation reservation1 = Reservation.builder()
                 .seat(seat)
-                .meal(Reservation.Meal.valueOf(foodBox.getSelectionModel().toString().toUpperCase()))
+                .meal(Reservation.Meal.valueOf(foodBox.getValue().toString().toUpperCase()))
                 .customerId(FlightClient.getFlightClient().getClientId())
                 .flightNumber(flight.getFlightNumber())
                 .build();

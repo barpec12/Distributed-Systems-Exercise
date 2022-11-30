@@ -88,11 +88,17 @@ public class ReservationController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("Seats");
             stage.show();
+
+            Stage stage_2 = (Stage) table_seats.getScene().getWindow();
+            stage_2.close();
+
         } catch (IOException exception) {
             exception.printStackTrace();
         }
 
     }
+
+
 
 
 
