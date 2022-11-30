@@ -67,7 +67,7 @@ public class FlightsTableController implements Initializable {
         });
 
         TableColumn<Flight, String> column8 = new TableColumn<>("Aircraft Model");
-        column8.setCellValueFactory(new PropertyValueFactory<>("aircraftModelNameComboBox"));
+        column8.setCellValueFactory(new PropertyValueFactory<>("aircraftModel"));
 
         flightTable.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8);
 

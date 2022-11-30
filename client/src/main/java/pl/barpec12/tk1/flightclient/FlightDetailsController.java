@@ -61,7 +61,7 @@ public class FlightDetailsController implements Initializable {
     public void fillWithData(Flight flight) {
         this.flight = flight;
         iataCode.setText(flight.getIataCode());
-        aircraftModelNameComboBox.setValue(flight.getAircraftModelNameComboBox());
+        aircraftModelNameComboBox.setValue(flight.getAircraftModel());
         flightNumber.setText(flight.getFlightNumber());
         operatingAirline.setText(flight.getOperatingAirline());
         departureAirport.setText(flight.getDepartureAirport());
@@ -111,7 +111,7 @@ public class FlightDetailsController implements Initializable {
 
         try {
             flight.setIataCode(iataCode.getText());
-            flight.setAircraftModelNameComboBox(aircraftModelNameComboBox.getValue().toString());
+            flight.setAircraftModel(Flight.AircraftModel.fromName(aircraftModelNameComboBox.getValue().toString()));
             flight.setFlightNumber(flightNumber.getText());
             flight.setOperatingAirline(operatingAirline.getText());
             flight.setDepartureAirport(departureAirport.getText());
