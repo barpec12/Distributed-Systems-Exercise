@@ -27,7 +27,6 @@ public class ReservationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        seats = Arrays.asList(FlightClient.getFlightClient().getReservationBooking().getFreeSeats("43223"));
         table_seats.getColumns().clear();
 
         TableColumn<Seat, String> column1 = new TableColumn<>("row");
@@ -47,7 +46,6 @@ public class ReservationController implements Initializable {
 
         table_seats.getColumns().addAll(column1, column2, column3, column4, column5);
 
-        setFlights(Arrays.asList(FlightClient.getFlightClient().getReservationBooking().getFreeSeats("43223")));
 
 //        table_seats.getSelectionModel().selectedItemProperty().addListener(event ->{
 //            try{
@@ -59,8 +57,8 @@ public class ReservationController implements Initializable {
 //        });
     }
 
-
-    public void setFlights(List<Seat> seats) {
+    public void fillWithData(Flight flight) {
+        seats = Arrays.asList(FlightClient.getFlightClient().getReservationBooking().getFreeSeats(flight.getFlightNumber()));
         table_seats.setItems(FXCollections.observableList(seats));
         table_seats.refresh();
     }

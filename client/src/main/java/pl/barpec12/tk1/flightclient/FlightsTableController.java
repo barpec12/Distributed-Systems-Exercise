@@ -102,12 +102,9 @@ public class FlightsTableController implements Initializable {
         });
 
         flightTable.getSelectionModel().selectedItemProperty().addListener(event ->{
-            try{
-                openReservationService();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-                });
+            Optional<Flight> flightOptional = Optional.ofNullable(flightTable.getSelectionModel().getSelectedItem());
+            flightOptional.ifPresent(f -> openReservationService(f));
+        });
 
     }
 
@@ -139,15 +136,23 @@ public class FlightsTableController implements Initializable {
         stage.show();
     }
 
-    private void openReservationService()throws IOException{
-        Stage stage = new Stage();
+    private void openReservationService(Flight flight){
+        try {
+            Stage stage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("reservationService.fxml"));
-        Parent root = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("reservationService.fxml"));
+            Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+            ReservationController reservationController = fxmlLoader.getController();
+            reservationController.fillWithData(flight);
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
     }
 }

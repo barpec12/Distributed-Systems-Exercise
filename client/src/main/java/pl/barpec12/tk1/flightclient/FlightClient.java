@@ -2,7 +2,6 @@ package pl.barpec12.tk1.flightclient;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -13,7 +12,6 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.xml.ws.Service;
 import lombok.Getter;
-import org.glassfish.jersey.client.ClientConfig;
 import pl.barpec12.tk1.flightclient.model.Flight;
 import pl.barpec12.tk1.flightclient.soap.ReservationBooking;
 
