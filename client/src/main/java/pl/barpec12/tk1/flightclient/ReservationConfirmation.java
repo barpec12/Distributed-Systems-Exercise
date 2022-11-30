@@ -2,9 +2,7 @@ package pl.barpec12.tk1.flightclient;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pl.barpec12.tk1.flightclient.model.Flight;
 import pl.barpec12.tk1.flightclient.model.Reservation;
@@ -18,7 +16,7 @@ import java.util.ResourceBundle;
 public class ReservationConfirmation implements Initializable {
 
     @FXML
-    private Label labelSeat;
+    private Label labelSeat, labelIfReserved;
 
     @FXML
     private ComboBox foodBox;
@@ -78,6 +76,20 @@ public class ReservationConfirmation implements Initializable {
                 .flightNumber(flight.getFlightNumber())
                 .build();
 
-        FlightClient.getFlightClient().getReservationBooking().reserveFlight(flight.getFlightNumber(),reservation1);
+        boolean result = FlightClient.getFlightClient().getReservationBooking().reserveFlight(flight.getFlightNumber(),reservation1);
+
+
+        Alert alert;
+
+        if (result) {
+            alert = new Alert(Alert.AlertType.INFORMATION, "Ticket has been reserved"+"\nPrice: "+seat.getPrice()+" Euro"
+                    , ButtonType.OK);
+
+        } else {
+            alert = new Alert(Alert.AlertType.WARNING, "Ticket is not available"
+                    , ButtonType.OK);
+        }
+
+        alert.showAndWait();
     }
 }

@@ -90,7 +90,7 @@ public class FlightServer {
 	}
 
 	private ZonedDateTime randomDate() {
-		return ZonedDateTime.now().plusMinutes(random.nextLong(10000));
+		return ZonedDateTime.now().plusMinutes(random.nextInt(10000));
 	}
 
 
