@@ -53,7 +53,7 @@ public class ReservationBookingImpl implements ReservationBooking {
     @Override
     public void addFlight(Flight flight) {
         var flights = flightServer.getFlights();
-        flights.stream().filter(f -> f.getFlightNumber().equals(flight.getFlightNumber())).forEach(f -> flights.remove(f));
+        flights.removeIf(f-> flight.getFlightNumber().equals(f.getFlightNumber()));
         flightServer.getFlights().add(flight);
     }
 }

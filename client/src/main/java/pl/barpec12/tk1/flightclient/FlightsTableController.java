@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -101,9 +102,15 @@ public class FlightsTableController implements Initializable {
             });
         });
 
-        flightTable.getSelectionModel().selectedItemProperty().addListener(event ->{
-            Optional<Flight> flightOptional = Optional.ofNullable(flightTable.getSelectionModel().getSelectedItem());
-            flightOptional.ifPresent(f -> openReservationService(f));
+        flightTable.setRowFactory(tv -> {
+            TableRow<Flight> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if(event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Flight flight = row.getItem();
+                    openReservationService(flight);
+                }
+            });
+        return row;
         });
 
     }

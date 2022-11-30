@@ -26,8 +26,26 @@ public class FlightServer {
 	@Getter
 	private static FlightServer flightServer;
 	protected FlightServer() {
-		var f = prepareBoeing();
+		var flightBuilder = Flight.builder();
+		var f = flightBuilder
+				.flightNumber("43223")
+				.originDate(ZonedDateTime.now())
+				.estimatedArrival(ZonedDateTime.now())
+				.scheduledArrival(ZonedDateTime.now())
+				.scheduledDeparture(ZonedDateTime.now())
+				.estimatedDeparture(ZonedDateTime.now())
+				.checkInStart(ZonedDateTime.now())
+				.checkInEnd(ZonedDateTime.now())
+				.arrivalAirport("TK Airport")
+				.build();
+		prepareBoeing(f);
 		addFlight(f);
+		flightBuilder.flightNumber("333");
+		flightBuilder.arrivalAirport("Darmstadt");
+		f = flightBuilder.build();
+		prepareBoeing(f);
+		addFlight(f);
+
 		var s = f.getSeats().stream().filter(seat -> seat.getLetter() == 'A' && seat.getRow() == 1).findAny().get();
 		Reservation reservation = Reservation.builder().flightNumber(f.getFlightNumber()).meal(Reservation.Meal.STANDARD).seat(s).build();
 
@@ -54,18 +72,7 @@ public class FlightServer {
 		return (char) (number + 64);
 	}
 
-	private Flight prepareBoeing() {
-		var flight = Flight.builder()
-				.flightNumber("43223")
-				.originDate(ZonedDateTime.now())
-				.estimatedArrival(ZonedDateTime.now())
-				.scheduledArrival(ZonedDateTime.now())
-				.scheduledDeparture(ZonedDateTime.now())
-				.estimatedDeparture(ZonedDateTime.now())
-				.checkInStart(ZonedDateTime.now())
-				.checkInEnd(ZonedDateTime.now())
-				.arrivalAirport("TK Airport")
-				.build();
+	private void prepareBoeing(Flight flight) {
 		Set<Seat> seats = new HashSet<>();
 		Seat.SeatBuilder seatBuilder = Seat.builder();
 		seatBuilder.seatClass(Seat.SeatClass.FIRST);
@@ -120,7 +127,6 @@ public class FlightServer {
 
 		seats.forEach(seat -> seat.updatePrice(flight));
 		flight.setSeats(seats);
-		return flight;
 	}
 
 }
