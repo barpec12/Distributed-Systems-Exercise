@@ -14,8 +14,6 @@ import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.logging.Logger;
 
-import static pl.barpec12.tk1.flightserver.model.Flight.AircraftModel.*;
-
 public class FlightServer {
 
 	private static Logger logger = Logger.getLogger(FlightServer.class.getName());

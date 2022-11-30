@@ -17,6 +17,8 @@ idea {
 
 mainClassName = 'pl.barpec12.tk1.flightclient.FlightClientApplication'
 
+defaultTasks 'run'
+
 javafx {
     version = "17"
     modules = [ 'javafx.controls', 'javafx.fxml' ]

@@ -8,6 +8,8 @@ repositories {
     mavenCentral()
 }
 
+defaultTasks 'run'
+
 dependencies {
     // https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-ri
     implementation group: 'com.sun.xml.ws', name: 'jaxws-ri', version: '4.0.0', ext: 'pom'
