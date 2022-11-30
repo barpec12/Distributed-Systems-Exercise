@@ -14,4 +14,5 @@ public class Reservation {
     private Seat seat;
     private Meal meal;
     private String flightNumber;
+
 }

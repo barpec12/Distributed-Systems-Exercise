@@ -13,6 +13,8 @@ public class Reservation {
     public enum Meal {
         STANDARD, VEGETARIAN, VEGAN;
     }
+    private String customerId;
     private Seat seat;
     private Meal meal;
+    private String flightNumber;
 }

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pl.barpec12.tk1.flightclient.ReservationConfirmation"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="154.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.barpec12.tk1.flightclient.ReservationConfirmation">
+   <children>
+      <Label layoutX="37.0" layoutY="30.0" text="Your seat:" />
+      <Label fx:id="labelSeat" layoutX="103.0" layoutY="30.0" />
+      <ComboBox fx:id="foodBox" layoutX="147.0" layoutY="25.0" prefHeight="26.0" prefWidth="169.0" promptText="Choose prefered food" />
+      <Button fx:id="confirmButton" layoutX="147.0" layoutY="115.0" mnemonicParsing="false" text="Confirm" />
+   </children>
 </AnchorPane>

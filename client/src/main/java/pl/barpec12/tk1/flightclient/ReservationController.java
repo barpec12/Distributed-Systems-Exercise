@@ -28,6 +28,8 @@ public class ReservationController implements Initializable {
 
     @FXML
     private TableView<Seat> table_seats;
+
+    private Flight flight;
     public ReservationController(){}
 
     @Override
@@ -65,6 +67,7 @@ public class ReservationController implements Initializable {
     }
 
     public void fillWithData(Flight flight) {
+        this.flight = flight;
         seats = Arrays.asList(FlightClient.getFlightClient().getReservationBooking().getFreeSeats(flight.getFlightNumber()));
         table_seats.setItems(FXCollections.observableList(seats));
         table_seats.refresh();
@@ -78,11 +81,12 @@ public class ReservationController implements Initializable {
             Parent root = fxmlLoader.load();
 
             ReservationConfirmation reservationConfirmation = fxmlLoader.getController();
-            reservationConfirmation.fill_data(seat);
+            reservationConfirmation.fill_data(seat, flight);
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
             stage.setScene(scene);
+            stage.setTitle("Seats");
             stage.show();
         } catch (IOException exception) {
             exception.printStackTrace();
