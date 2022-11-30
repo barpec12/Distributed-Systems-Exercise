@@ -96,9 +96,9 @@ public class FlightsTableController implements Initializable {
         deleteButton.setOnAction(event -> {
             Optional<Flight> flightOptional = Optional.ofNullable(flightTable.getSelectionModel().getSelectedItem());
             flightOptional.ifPresent(f -> {
-                flightTable.getItems().remove(f);
-                flightTable.refresh();
-                //TODO remove flight
+                var client = FlightClient.getFlightClient();
+                client.getReservationBooking().deleteFlight(f.getFlightNumber());
+                client.refreshFlights();
             });
         });
 

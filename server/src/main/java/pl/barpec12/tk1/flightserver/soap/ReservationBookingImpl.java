@@ -57,4 +57,10 @@ public class ReservationBookingImpl implements ReservationBooking {
         flight.getSeats().forEach(seat -> seat.updatePrice(flight));
         flightServer.getFlights().add(flight);
     }
+
+    @Override
+    public void deleteFlight(String flightNumber) {
+        var flights = flightServer.getFlights();
+        flights.removeIf(f-> flightNumber.equals(f.getFlightNumber()));
+    }
 }

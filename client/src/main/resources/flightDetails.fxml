@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.barpec12.tk1.flightclient.FlightDetailsController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.barpec12.tk1.flightclient.FlightDetailsController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="683.0">
          <children>
@@ -58,7 +58,7 @@
                            </GridPane.margin>
                         </HBox>
                         <Label text="IATA Code:" />
-                        <TextField fx:id="iataCode" prefHeight="25.0" prefWidth="140.0" promptText="mandatory field" GridPane.columnIndex="1">
+                        <TextField fx:id="iataCode" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1">
                            <font>
                               <Font size="10.0" />
                            </font></TextField>
@@ -69,14 +69,14 @@
                               <Font size="10.0" />
                            </font></TextField>
                         <Label layoutX="10.0" layoutY="202.0" text="Departure Airport" GridPane.rowIndex="3" />
-                        <TextField fx:id="departureAirport" layoutX="110.0" layoutY="141.0" prefHeight="25.0" prefWidth="140.0" promptText="mandatory field" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="departureAirport" layoutX="110.0" layoutY="141.0" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="10.0" />
                            </font></TextField>
                         <Label layoutX="10.0" layoutY="202.0" text="Origin Date" GridPane.rowIndex="4" />
                         <Label layoutX="10.0" layoutY="31.0" text="Scheduled Departure" GridPane.rowIndex="5" />
                         <Label layoutX="10.0" layoutY="31.0" text="Departure Terminal" GridPane.rowIndex="6" />
-                        <TextField fx:id="departureTerminal" layoutX="10.0" layoutY="27.0" prefHeight="19.0" prefWidth="150.0" promptText="mandatory field" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <TextField fx:id="departureTerminal" layoutX="10.0" layoutY="27.0" prefHeight="19.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <font>
                               <Font size="10.0" />
                            </font></TextField>
@@ -90,24 +90,24 @@
                         <TextField fx:id="checkInCounter" prefHeight="25.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <HBox prefHeight="19.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <children>
-                              <TextField fx:id="estimatedDepartureHour" />
-                              <TextField fx:id="estimatedDepartureMinute" />
+                              <TextField fx:id="estimatedDepartureHour" promptText="12" />
+                              <TextField fx:id="estimatedDepartureMinute" promptText="00" />
                               <DatePicker fx:id="estimatedDepartureDate" />
                            </children></HBox>
                         <HBox prefHeight="24.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                            <children>
-                              <TextField fx:id="checkInStartHour" />
-                              <TextField fx:id="checkInStartMinute" />
+                              <TextField fx:id="checkInStartHour" promptText="12" />
+                              <TextField fx:id="checkInStartMinute" promptText="00" />
                               <DatePicker fx:id="checkInStartDate" />
                            </children></HBox>
                         <HBox prefHeight="7.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
-                              <TextField fx:id="originDateHour" />
-                              <TextField fx:id="originDateMinute" />
-                              <DatePicker fx:id="originDateDate" />
+                              <TextField fx:id="originDateHour" promptText="12" />
+                              <TextField fx:id="originDateMinute" promptText="00" />
+                              <DatePicker fx:id="originDateDate" editable="false" />
                            </children>
                         </HBox>
-                        <ComboBox fx:id="aircraftModelNameComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="aircraftModelNameComboBox" prefWidth="150.0" promptText="Select model" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1">
@@ -131,12 +131,12 @@
                      </rowConstraints>
                      <children>
                         <Label text="Operating Airline" />
-                        <TextField fx:id="operatingAirline" prefHeight="26.0" prefWidth="140.0" promptText="mandatory field" GridPane.columnIndex="1">
+                        <TextField fx:id="operatingAirline" prefHeight="26.0" prefWidth="140.0" GridPane.columnIndex="1">
                            <font>
                               <Font size="10.0" />
                            </font></TextField>
                         <Label layoutX="10.0" layoutY="202.0" text="Arrival Airport" GridPane.rowIndex="3" />
-                        <TextField fx:id="arrivalAirport" layoutX="110.0" layoutY="141.0" prefHeight="26.0" prefWidth="140.0" promptText="mandatory field" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="arrivalAirport" layoutX="110.0" layoutY="141.0" prefHeight="26.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="10.0" />
                            </font></TextField>
@@ -149,22 +149,22 @@
                         <Label text="Check-in End" GridPane.rowIndex="11" />
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
-                              <TextField fx:id="scheduledArrivalHour" />
-                              <TextField fx:id="scheduledArrivalMinute" />
+                              <TextField fx:id="scheduledArrivalHour" promptText="12" />
+                              <TextField fx:id="scheduledArrivalMinute" promptText="00" />
                               <DatePicker fx:id="scheduledArrivalDate" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <children>
-                              <TextField fx:id="estimatedArrivalHour" />
-                              <TextField fx:id="estimatedArrivalMinute" />
+                              <TextField fx:id="estimatedArrivalHour" promptText="12" />
+                              <TextField fx:id="estimatedArrivalMinute" promptText="00" />
                               <DatePicker fx:id="estimatedArrivalDate" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                            <children>
-                              <TextField fx:id="checkInEndHour" />
-                              <TextField fx:id="checkInEndMinute" />
+                              <TextField fx:id="checkInEndHour" promptText="12" />
+                              <TextField fx:id="checkInEndMinute" promptText="00" />
                               <DatePicker fx:id="checkInEndDate" />
                            </children>
                         </HBox>
@@ -179,7 +179,7 @@
               </buttons>
             </ButtonBar>
             <Label layoutX="14.0" layoutY="436.0" text="Flight Status" />
-            <ComboBox fx:id="flightStatus" layoutX="98.0" layoutY="432.0" prefHeight="26.0" prefWidth="495.0" />
+            <ComboBox fx:id="flightStatus" layoutX="98.0" layoutY="432.0" prefHeight="26.0" prefWidth="495.0" promptText="Select flight status" />
          </children>
          <StackPane.margin>
             <Insets />

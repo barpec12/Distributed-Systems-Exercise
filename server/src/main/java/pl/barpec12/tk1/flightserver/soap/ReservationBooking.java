@@ -18,4 +18,6 @@ public interface ReservationBooking {
     boolean reserveFlight(String flightNumber, Reservation reservation);
     @WebMethod
     void addFlight(Flight flight);
+    @WebMethod
+    void deleteFlight(String flightNumber);
 }
