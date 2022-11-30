@@ -163,9 +163,10 @@ public class FlightDetailsController implements Initializable {
         } catch (NumberFormatException | DateTimeException numberFormatException) {
             clearDateFieldProneToErrors();
             return;
+        } catch (NullPointerException nullPointerException) {
+            return;
         }
         if(Objects.isNull(flightNumber.getText())|| flightNumber.getText().length() < 1) {
-            clearDateFieldProneToErrors();
             return;
         }
         flightClient.getReservationBooking().addFlight(flight);
