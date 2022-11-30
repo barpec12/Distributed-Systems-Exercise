@@ -34,45 +34,9 @@ public class FlightServer {
 		random = new Random();
 
 		var flightBuilder = Flight.builder();
-		var f = flightBuilder
-				.flightNumber("43223")
-				.originDate(randomDate())
-				.estimatedArrival(randomDate())
-				.scheduledArrival(randomDate())
-				.scheduledDeparture(randomDate())
-				.estimatedDeparture(randomDate())
-				.checkInStart(randomDate())
-				.checkInEnd(randomDate())
-				.arrivalAirport("TK Airport")
-				.flightStatus("")
-				.operatingAirline("Lufthansa")
-				.iataCode("LH")
-				.departureAirport("Frankfurt")
-				.departureTerminal("A1")
-				.aircraftModel(Boeing_737_900)
-				.build();
-		addFlight(f);
-
-		flightBuilder
-				.flightNumber("333")
-				.arrivalAirport("Darmstadt")
-				.aircraftModel(Airbus_319)
-				.scheduledDeparture(randomDate());
-		f = flightBuilder.build();
-		addFlight(f);
-
-		flightBuilder
-				.flightNumber("5456")
-				.arrivalAirport("Warsaw")
-				.aircraftModel(Embraer_E170)
-				.scheduledDeparture(randomDate());
-		f = flightBuilder.build();
-		addFlight(f);
-
-		var s = f.getSeats().stream().filter(seat -> seat.getLetter() == 'A' && seat.getRow() == 1).findAny().get();
-		Reservation reservation = Reservation.builder().flightNumber(f.getFlightNumber()).meal(Reservation.Meal.STANDARD).seat(s).build();
-
-		addReservation(reservation);
+		for(int i = 0; i<100; i++) {
+			flights.add(prepareRandomFlight(flightBuilder));
+		}
 	}
 
 	public static void main(String[] args) {
@@ -96,6 +60,27 @@ public class FlightServer {
 		return ZonedDateTime.now().plusMinutes(random.nextInt(10000));
 	}
 
-
-
+	private final List<String> departureAirports = List.of("Darmstadt", "Frankfurt", "Barcelona", "Budapest", "Copenhagen", "London");
+	private final List<String> arrivalAirports = List.of("Warsaw", "Berlin", "Paris", "Amsterdam", "Dubai", "Kiev", "Lisbon");
+	private final List<String> operatingAirlines = List.of("Lufthansa", "Lot", "Ryanair", "Wizz Air", "EasyJet");
+	private Flight prepareRandomFlight(Flight.FlightBuilder flightBuilder) {
+		var airline = operatingAirlines.get(random.nextInt(operatingAirlines.size()));
+		return flightBuilder
+				.flightNumber(String.valueOf(random.nextInt(1000000)))
+				.originDate(randomDate())
+				.estimatedArrival(randomDate())
+				.scheduledArrival(randomDate())
+				.scheduledDeparture(randomDate())
+				.estimatedDeparture(randomDate())
+				.checkInStart(randomDate())
+				.checkInEnd(randomDate())
+				.arrivalAirport(arrivalAirports.get(random.nextInt(arrivalAirports.size())))
+				.flightStatus("")
+				.operatingAirline(airline)
+				.iataCode(airline.substring(0, 3).toUpperCase())
+				.departureAirport(departureAirports.get(random.nextInt(departureAirports.size())))
+				.departureTerminal("A1")
+				.aircraftModel(Flight.AircraftModel.values()[random.nextInt(3)])
+				.build();
+	}
 }
